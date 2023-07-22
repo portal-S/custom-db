@@ -6,6 +6,9 @@ import com.crew.operation.inerface.DataManipulator;
 import java.io.*;
 
 public class DefaultDataManipulator implements DataManipulator {
+
+    private ReadProperties readProperties = new ReadProperties();
+
     @Override
     public void write(Entry entry) {
 
@@ -13,7 +16,7 @@ public class DefaultDataManipulator implements DataManipulator {
 
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter("src/main/resources/storage.txt", true));
+            writer = new BufferedWriter(new FileWriter(readProperties.readProperty("storage.destination"), true));
             writer.append(result);
             writer.newLine();
             writer.close();
